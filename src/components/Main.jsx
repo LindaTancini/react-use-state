@@ -5,6 +5,8 @@ console.log(languages);
 
 // CREO FUNZIONE DEL COMPONENTE MAIN
 function Main() {
+  //CREO VARIABILE REATTIVA
+  const [selectedLanguage, setSelectedLanguage] = useState(0);
   return (
     <main>
       <div className="container py-5">
