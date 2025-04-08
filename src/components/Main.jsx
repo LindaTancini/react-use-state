@@ -15,7 +15,10 @@ function Main() {
           {languages.map((language) => (
             <button
               key={language.id}
-              className="btn btn-primary mb-4"
+              //USO METODO TERNARIO PER CAMBIARE STILE AL BOTTONE IN BASE A QUALE CLICCO
+              className={`btn mb-4 ${
+                selectedLanguage === language.id ? "btn-warning" : "btn-primary"
+              }`}
               onClick={() => setSelectedLanguage(language.id)}
             >
               {language.title}
