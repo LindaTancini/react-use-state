@@ -6,7 +6,7 @@ console.log(languages);
 // CREO FUNZIONE DEL COMPONENTE MAIN
 function Main() {
   //CREO VARIABILE REATTIVA
-  const [selectedLanguage, setSelectedLanguage] = useState(1);
+  const [selectedLanguage, setSelectedLanguage] = useState(0);
   return (
     <main>
       <div className="container py-5">
@@ -23,19 +23,28 @@ function Main() {
           ))}
 
           <div className="card p-4">
-            {/* USO FIND PER CERCARE UN DETERMINATO ELEMENTO NELL'ARRAY */}
-            <h4>
-              {
-                languages.find((language) => language.id == selectedLanguage)
-                  .title
-              }
-            </h4>
-            <p>
-              {
-                languages.find((language) => language.id == selectedLanguage)
-                  .description
-              }
-            </p>
+            {/* USO METODO TERNARIO PER FAR SI CHE ESCA UN MESSAGGIO SE NON SELEZIONO NULLA */}
+            {selectedLanguage === 0 ? (
+              <h4>Nessun linguaggio selezionato</h4>
+            ) : (
+              <>
+                {/* USO FIND PER CERCARE UN DETERMINATO ELEMENTO NELL'ARRAY */}
+                <h4>
+                  {
+                    languages.find(
+                      (language) => language.id === selectedLanguage
+                    ).title
+                  }
+                </h4>
+                <p>
+                  {
+                    languages.find(
+                      (language) => language.id === selectedLanguage
+                    ).description
+                  }
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>
