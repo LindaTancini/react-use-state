@@ -1,3 +1,8 @@
+// IMPORT ARRAY E USESTATE
+import { useState } from "react";
+import languages from "../data/languages";
+console.log(languages);
+
 // CREO FUNZIONE DEL COMPONENTE MAIN
 function Main() {
   return (
