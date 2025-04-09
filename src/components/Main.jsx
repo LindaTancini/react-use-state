@@ -1,54 +1,44 @@
 // IMPORT ARRAY E USESTATE
 import { useState } from "react";
 import languages from "../data/languages";
-console.log(languages);
 
 // CREO FUNZIONE DEL COMPONENTE MAIN
 function Main() {
-  //CREO VARIABILE REATTIVA
-  const [selectedLanguage, setSelectedLanguage] = useState(0);
+  // CREO VARIABILE REATTIVA
+  const startingLanguage = null;
+  const [selectedLanguage, setSelectedLanguage] = useState(startingLanguage);
+
   return (
     <main>
       <div className="container py-5">
         <div className="d-flex flex-wrap gap-2">
-          {/*CON MAP VADO A ITINERARE NELL'ARRAY E PRENDO IL LORO ID E TITLE*/}
+          {/* CON MAP VADO A ITERARE NELL'ARRAY E PRENDO IL LORO ID E TITLE */}
           {languages.map((language) => (
             <button
               key={language.id}
-              //USO METODO TERNARIO PER CAMBIARE STILE AL BOTTONE IN BASE A QUALE CLICCO
+              // USO METODO TERNARIO CON AND PER CAMBIARE STILE AL BOTTONE IN BASE A QUALE CLICCO
               className={`btn mb-4 ${
-                selectedLanguage === language.id ? "btn-warning" : "btn-primary"
+                selectedLanguage && selectedLanguage.id === language.id
+                  ? "btn-warning"
+                  : "btn-primary"
               }`}
-              onClick={() => setSelectedLanguage(language.id)}
+              onClick={() => setSelectedLanguage(language)}
             >
               {language.title}
             </button>
           ))}
+        </div>
 
-          <div className="card p-4">
-            {/* USO METODO TERNARIO PER FAR SI CHE ESCA UN MESSAGGIO SE NON SELEZIONO NULLA */}
-            {selectedLanguage === 0 ? (
-              <h4>Nessun linguaggio selezionato</h4>
-            ) : (
-              <>
-                {/* USO FIND PER CERCARE UN DETERMINATO ELEMENTO NELL'ARRAY */}
-                <h4>
-                  {
-                    languages.find(
-                      (language) => language.id === selectedLanguage
-                    ).title
-                  }
-                </h4>
-                <p>
-                  {
-                    languages.find(
-                      (language) => language.id === selectedLanguage
-                    ).description
-                  }
-                </p>
-              </>
-            )}
-          </div>
+        <div className="card p-4">
+          {/* USO METODO TERNARIO PER FAR SI CHE ESCA UN MESSAGGIO SE NON SELEZIONO NULLA */}
+          {!selectedLanguage ? (
+            <p>Nessun linguaggio selezionato</p>
+          ) : (
+            <>
+              <h4>{selectedLanguage.title}</h4>
+              <p>{selectedLanguage.description}</p>
+            </>
+          )}
         </div>
       </div>
     </main>
